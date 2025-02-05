@@ -78,7 +78,7 @@ app.use(express.json());
 
 // Session middleware
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'your-secret-key',
+  secret: process.env.SESSION_SECRET || 'qwertyuiopasdfghjklzxcvbnmqwertyuiop',
   resave: false,
   saveUninitialized: true,
 }));
