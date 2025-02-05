@@ -8,7 +8,7 @@ const router = express.Router();
 passport.use(new TwitterStrategy({
   consumerKey: process.env.TWITTER_API_KEY,
   consumerSecret: process.env.TWITTER_API_SECRET,
-  callbackURL: "http://localhost:3000/api/v1/auth/twitter/callback",
+  callbackURL: "https://sc-content-generator-back.onrender.com/api/v1/auth/twitter/callback",
   includeEmail: true
 },
 async function(token, tokenSecret, profile, cb) {
@@ -40,17 +40,17 @@ passport.authenticate('twitter')(req, res, next);
 
 router.get('/callback', 
 passport.authenticate('twitter', { 
-  failureRedirect: 'http://localhost:5173/social-accounts?error=failed'
+  failureRedirect: 'https://sc-content-generator-front.onrender.com/social-accounts?error=failed'
 }),
 (req, res) => {
-  res.redirect('http://localhost:5173/social-accounts?success=true');
+  res.redirect('https://sc-content-generator-front.onrender.com/social-accounts?success=true');
 }
 );
 
 // Error handler middleware
 router.use((err, req, res, next) => {
 if (err.name === 'SessionError') {
-  res.redirect('http://localhost:5173/social-accounts?error=session-expired');
+  res.redirect('https://sc-content-generator-front.onrender.com/social-accounts?error=session-expired');
 } else {
   next(err);
 }

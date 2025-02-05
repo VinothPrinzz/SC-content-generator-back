@@ -91,7 +91,7 @@ app.use(passport.session());
 passport.use(new TwitterStrategy({
   consumerKey: process.env.TWITTER_API_KEY,
   consumerSecret: process.env.TWITTER_API_SECRET,
-  callbackURL: "http://localhost:3000/api/v1/auth/twitter/callback",
+  callbackURL: "https://sc-content-generator-back.onrender.com/api/v1/auth/twitter/callback",
   passReqToCallback: true
 },
 async function(req, token, tokenSecret, profile, done) {
@@ -609,10 +609,10 @@ app.get('/api/v1/auth/twitter', (req, res, next) => {
 
 app.get('/api/v1/auth/twitter/callback', 
   passport.authenticate('twitter', { 
-    failureRedirect: 'http://localhost:5173/social-accounts?error=failed'
+    failureRedirect: 'https://sc-content-generator-front.onrender.com/social-accounts?error=failed'
   }),
   (req, res) => {
-    res.redirect('http://localhost:5173/social-accounts?success=true');
+    res.redirect('https://sc-content-generator-front.onrender.com/social-accounts?success=true');
   }
 );
 
@@ -620,7 +620,7 @@ app.get('/api/v1/auth/twitter/callback',
 app.use((err, req, res, next) => {
   console.error('Error:', err);
   if (err.name === 'SessionError') {
-    return res.redirect('http://localhost:5173/social-accounts?error=' + encodeURIComponent(err.message));
+    return res.redirect('https://sc-content-generator-front.onrender.com/social-accounts?error=' + encodeURIComponent(err.message));
   }
   next(err);
 });
