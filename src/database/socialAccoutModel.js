@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://admin:admin@test.gc8su9s.mongodb.net/brainly?retryWrites=true&w=majority&appName=test")
 
 const socialAccountSchema = new mongoose.Schema({
     userId: {  
@@ -31,7 +32,7 @@ const socialAccountSchema = new mongoose.Schema({
   });
 
 
-// Ensure one user can't connect same platform multiple times
+// user can't connect same platform multiple times
 // socialAccountSchema.index({ userId: 1, platform: 1 }, { unique: true });
 // socialAccountSchema.index({ accountId: 1, platform: 1 }, { unique: true });
 
